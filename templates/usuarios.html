@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }}</title>
+</head>
+<body>
+    {% include "inc/head.html" %}
+
+<h1>Usuários</h1>
+<p>Listagem de usuários</p>
+
+<p>Última atualização {{ "now"|date('d/m/Y H:i:s', 'America/Sao_Paulo')}}</p>
+
+<table border="1">
+    <tr>
+        <th>Usuário</th>
+        <th>Admin</th>
+        <th>Ativo</th>
+    </tr>
+
+    {% for usr in usuarios %}
+    <!-- Linha para repetir -->
+    <tr>
+        <td>{{ usr.username }}</td>
+        <td> {{ usr.admin }}</td>
+        <td>{{ usr.ativo }}</td>
+        <td><a href="usuario_apagar.php?id={{usr.id}}">Apagar</a></td>
+    </tr>
+    <!-- /Linha para repetir-->
+    {% else %}
+    <tr>
+        <td colspan="2">Nenhum usuário</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% include "inc/foot.html" %}
+</body>
+</html>
